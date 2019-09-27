@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Authentications</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./app.css">
+    </head>
+    <body>
+        <!-- <script src="./app.js"></script> -->
+        <h1>Auth check</h1>
+        <input type="text" name="username" id="name"/>
+        <input type="text" name="password" id="password"/>
+        <button onclick="login()">submit</button>
+        <script>
+        function login(e){
+            let name=document.getElementById('name').value;
+            let passowrd=document.getElementById('password').value;
+            const ProxyURL= "https://cors-anywhere.herokuapp.com/"
+            fetch('http://localhost:3000/user/login',{
+                method: "POST",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                withCredentials: true,
+                body: JSON.stringify({name: name, password:passowrd})
+            })
+            .then(res=>res.text())
+            .then(res=>console.log(res));
+        }
+        </script>
+    </body>
+</html>
